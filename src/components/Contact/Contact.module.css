@@ -25,3 +25,7 @@
 .contactBtn:hover {
   background-color: rgb(247, 166, 166);
 }
+.btnWrapper {
+  display: flex;
+  gap: 6px;
+}

@@ -1,9 +1,10 @@
 import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
+import css from './Registration.module.css';
 
 const Registration = () => {
   return (
-    <div>
-      <h3>Register your account</h3>
+    <div className={css.container}>
+      <h3 className={css.title}>Register your account</h3>
       <RegistrationForm />
     </div>
   );

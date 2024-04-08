@@ -1,7 +1,7 @@
 import { Field, Formik, Form } from 'formik';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
-// import Button from '@mui/material/Button';
+import css from './RegistrationForm.module.css';
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ const RegistrationForm = () => {
     actions.resetForm();
   };
   return (
-    <div>
+    <div className={css.formContainer}>
       <Formik
         initialValues={{
           name: '',
@@ -20,20 +20,22 @@ const RegistrationForm = () => {
         onSubmit={handleSUbmit}
       >
         <Form>
-          <label>
+          <label className={css.label}>
             UserName
-            <Field type="text" name="name" />
+            <Field className={css.inputField} type="text" name="name" />
           </label>
-          <label>
+          <label className={css.label}>
             Email
-            <Field type="email" name="email" />
+            <Field className={css.inputField} type="email" name="email" />
           </label>
-          <label>
+          <label className={css.label}>
             Password
-            <Field type="password" name="password" />
+            <Field className={css.inputField} type="password" name="password" />
           </label>
 
-          <button type="submit">Sigh Up!</button>
+          <button className={css.submitBtn} type="submit">
+            Sigh Up!
+          </button>
         </Form>
       </Formik>
     </div>

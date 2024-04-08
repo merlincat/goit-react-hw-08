@@ -1,15 +1,18 @@
 import { Link } from 'react-router-dom';
 import LoginForm from '../../components/LoginForm/LoginForm';
+import css from './Login.module.css';
 
 const Login = () => {
   return (
-    <div>
-      <h3>Please Log in</h3>
+    <div className={css.container}>
+      <h3 className={css.title}>Please Log in</h3>
       <LoginForm />
 
-      <div>
+      <div className={css.text}>
         Still does not have an account? Please
-        <Link to="/register">register now!</Link>
+        <Link to="/register" className={css.link}>
+          register now!
+        </Link>
       </div>
     </div>
   );

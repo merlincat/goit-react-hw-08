@@ -1,5 +1,11 @@
+import { DNA } from 'react-loader-spinner';
 const Loader = () => {
-  return <div>Loading data....</div>;
+  return (
+    <div>
+      <DNA />
+      <p>Loading data...</p>
+    </div>
+  );
 };
 
 export default Loader;

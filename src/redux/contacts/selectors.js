@@ -11,6 +11,23 @@ export const selectContacts = state => {
   return state.contacts.items;
 };
 
+export const selectFilteredContacts = createSelector(
+  [selectFilterValue, selectContacts],
+  (filterValue, contacts) => {
+    filterValue = filterValue.toLowerCase().trim();
+
+    if (!filterValue) {
+      return contacts;
+    }
+
+    return contacts.filter(
+      contact =>
+        contact.name.toLowerCase().includes(filterValue) ||
+        contact.number.includes(filterValue)
+    );
+  }
+);
+
 // export const selectNameFilter = state => {
 // const filterValue = selectFilterValue(state).toLowerCase().trim();
 
@@ -24,17 +41,3 @@ export const selectContacts = state => {
 // };
 
 // const selectFilteredContacts = createSelector(selectSelf, state => state.value);
-export const selectFilteredContacts = createSelector(
-  [selectFilterValue, selectContacts],
-  (filterValue, contacts) => {
-    filterValue = filterValue.toLowerCase().trim();
-
-    if (!filterValue) {
-      return contacts;
-    }
-
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filterValue)
-    );
-  }
-);

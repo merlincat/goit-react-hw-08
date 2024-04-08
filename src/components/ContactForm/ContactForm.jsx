@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import css from './ContactForm.module.css';
 import { addContact } from '../../redux/contacts/operations';
 import { useDispatch } from 'react-redux';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
@@ -72,7 +72,6 @@ const ContactForm = () => {
           </button>
         </Form>
       </Formik>
-      <Toaster />
     </>
   );
 };

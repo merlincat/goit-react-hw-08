@@ -1,0 +1,11 @@
+.btn {
+  display: block;
+  width: 110px;
+  padding: 7px;
+  margin: 0 auto;
+}
+.userMenuWrapper {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}

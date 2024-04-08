@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import css from './AppBar.module.css';
 
 import {
   selectIsLoggedIn,
@@ -12,7 +13,7 @@ const AppBar = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
-    <header>
+    <header className={css.header}>
       <Navigation />
       {!isRefreshing && <div>{isLoggedIn ? <UserMenu /> : <AuthNav />}</div>}
     </header>
