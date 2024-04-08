@@ -1,27 +1,51 @@
 // import css from './App.module.css';
 
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-
+import { useDispatch, useSelector } from 'react-redux';
 import Registration from '../../pages/Registration/Registration';
 import Home from '../../pages/Home/Home';
 import Login from '../../pages/Login/Login';
 import Contacts from '../../pages/Contacts/Contacts';
-import AppBar from '../AppBar/AppBar';
+import { refreshUser } from '../../redux/auth/operations';
+import { selectIsRefreshing } from '../../redux/auth/selectors';
+import Loader from '../Loader/Loader';
+import Layout from '../Layout/Layout';
+import RestrictedRoute from './RestrictedRoute';
+import PrivateRoute from './PrivateRoute';
 
 const App = () => {
+  const isRefreshing = useSelector(selectIsRefreshing);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
   return (
-    <>
-      <AppBar />
-      <Suspense fallback={null}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/registration" element={<Registration />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/contacts" element={<Contacts />} />
-        </Routes>
-      </Suspense>
-    </>
+    <Layout>
+      {isRefreshing ? (
+        <Loader />
+      ) : (
+        <>
+          <Suspense fallback={null}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route
+                path="/register"
+                element={<RestrictedRoute component={<Registration />} />}
+              />
+              <Route
+                path="/login"
+                element={<RestrictedRoute component={<Login />} />}
+              />
+              <Route
+                path="/contacts"
+                element={<PrivateRoute component={<Contacts />} />}
+              />
+            </Routes>
+          </Suspense>
+        </>
+      )}
+    </Layout>
   );
 };
 

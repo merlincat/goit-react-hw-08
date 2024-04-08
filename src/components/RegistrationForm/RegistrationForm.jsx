@@ -32,9 +32,7 @@ const RegistrationForm = () => {
             Password
             <Field type="password" name="password" />
           </label>
-          {/* <Button variant="contained" type="submit" color="success">
-            Sigh Up!
-          </Button> */}
+
           <button type="submit">Sigh Up!</button>
         </Form>
       </Formik>
